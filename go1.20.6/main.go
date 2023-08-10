@@ -6,18 +6,18 @@
 //
 // To install, run:
 //
-//	$ go install golang.org/dl/go1.20.6@latest
-//	$ go1.20.6 download
+//     $ go install github.com/rwg/golang-dl/go1.20.6@latest
+//     $ go1.20.6 download
 //
 // And then use the go1.20.6 command as if it were your normal go
 // command.
 //
-// See the release notes at https://go.dev/doc/devel/release#go1.20.6.
+// See the release notes at https://go.dev/doc/devel/release#go1.20.minor
 //
-// File bugs at https://go.dev/issue/new.
+// File bugs at https://go.dev/issue/new
 package main
 
-import "golang.org/dl/internal/version"
+import "github.com/rwg/golang-dl/internal/version"
 
 func main() {
 	version.Run("go1.20.6")

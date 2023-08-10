@@ -6,18 +6,18 @@
 //
 // To install, run:
 //
-//     $ go install golang.org/dl/go1.17.5@latest
+//     $ go install github.com/rwg/golang-dl/go1.17.5@latest
 //     $ go1.17.5 download
 //
 // And then use the go1.17.5 command as if it were your normal go
 // command.
 //
-// See the release notes at https://go.dev/doc/devel/release#go1.17.minor.
+// See the release notes at https://go.dev/doc/devel/release#go1.17.minor
 //
-// File bugs at https://go.dev/issue/new.
+// File bugs at https://go.dev/issue/new
 package main
 
-import "golang.org/dl/internal/version"
+import "github.com/rwg/golang-dl/internal/version"
 
 func main() {
 	version.Run("go1.17.5")
