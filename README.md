@@ -10,6 +10,12 @@ The upstream repository is available at:
 - https://cs.opensource.google/go/dl
 - https://github.com/golang/dl
 
+## Changes from upstream
+
+- Exit statuses from `go` commands that the wrapper programs run are now used
+  as the wrapper programs' exit statuses. (The upstream version only used exit
+  statuses 0 and 1.)
+
 ## Usage
 
 Use `go install` to install the wrapper program from this repository for the

@@ -70,7 +70,9 @@ func runGo(root string) {
 	handleSignals()
 
 	if err := cmd.Run(); err != nil {
-		// TODO: return the same exit status maybe.
+		if xerr, ok := err.(*exec.ExitError); ok {
+			os.Exit(xerr.ExitCode())
+		}
 		os.Exit(1)
 	}
 	os.Exit(0)
