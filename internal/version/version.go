@@ -448,6 +448,11 @@ func exe() string {
 }
 
 func goroot(version string) (string, error) {
+	override := os.Getenv("GOLANG_DL_SDK_ROOT")
+	if override != "" {
+		return filepath.Join(override, version), nil
+	}
+
 	home, err := homedir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get home directory: %v", err)
