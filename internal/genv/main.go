@@ -32,9 +32,9 @@ func main() {
 	if len(os.Args) == 1 {
 		usage()
 	}
-	dlRoot, err := golangOrgDlRoot()
+	dlRoot, err := dlModuleRoot()
 	if err != nil {
-		failf("golangOrgDlRoot: %v", err)
+		failf("dlModuleRoot: %v", err)
 	}
 	for _, version := range os.Args[1:] {
 		if !strings.HasPrefix(version, "go") {
@@ -64,9 +64,6 @@ func main() {
 			failf("ioutil.WriteFile: %v", err)
 		}
 		fmt.Println("Wrote", path)
-		if err := exec.Command("gofmt", "-w", path).Run(); err != nil {
-			failf("could not gofmt file %q: %v", path, err)
-		}
 	}
 }
 
@@ -74,7 +71,7 @@ func docHost(ver string) string {
 	if strings.Contains(ver, "rc") || strings.Contains(ver, "beta") {
 		return "tip.golang.org"
 	}
-	return "golang.org"
+	return "go.dev"
 }
 
 func versionNoPatch(ver string) string {
@@ -84,7 +81,7 @@ func versionNoPatch(ver string) string {
 		failf("unrecognized version %q", ver)
 	}
 	if m[2] != "" {
-		return "devel/release.html#" + m[1] + ".minor"
+		return "devel/release#" + m[1] + ".minor"
 	}
 	return m[1]
 }
@@ -105,7 +102,7 @@ var mainTmpl = template.Must(template.New("main").Parse(`// Copyright {{.Year}} 
 //
 // To install, run:
 //
-//     $ go install golang.org/dl/{{.Version}}@latest
+//     $ go install github.com/rwg/golang-dl/{{.Version}}@latest
 //     $ {{.Version}} download
 //
 // And then use the {{.Version}} command as if it were your normal go
@@ -113,21 +110,21 @@ var mainTmpl = template.Must(template.New("main").Parse(`// Copyright {{.Year}} 
 //
 // See the release notes at https://{{.DocHost}}/doc/{{.VersionNoPatch}}
 //
-// File bugs at https://golang.org/issues/new
+// File bugs at https://go.dev/issue/new
 package main
 
-import "golang.org/dl/internal/version"
+import "github.com/rwg/golang-dl/internal/version"
 
 func main() {
 	version.Run("{{.Version}}")
 }
 `))
 
-// golangOrgDlRoot determines the directory corresponding to the root
-// of module golang.org/dl by invoking 'go list -m' in module mode.
-// It must be called with a working directory that is contained
-// by the golang.org/dl module, otherwise it returns an error.
-func golangOrgDlRoot() (string, error) {
+// dlModuleRoot determines the directory corresponding to the root of module
+// github.com/rwg/golang-dl by invoking 'go list -m' in module mode. It must be
+// called with a working directory that is contained by the
+// github.com/rwg/golang-dl module, otherwise it returns an error.
+func dlModuleRoot() (string, error) {
 	cmd := exec.Command("go", "list", "-m", "-json")
 	cmd.Env = append(os.Environ(), "GO111MODULE=on")
 	out, err := cmd.Output()
@@ -144,8 +141,8 @@ func golangOrgDlRoot() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	if mod.Path != "golang.org/dl" {
-		return "", fmt.Errorf("working directory must be in module golang.org/dl, but 'go list -m' reports it's currently in module %s", mod.Path)
+	if mod.Path != "github.com/rwg/golang-dl" {
+		return "", fmt.Errorf("working directory must be in module github.com/rwg/golang-dl, but 'go list -m' reports it's currently in module %s", mod.Path)
 	}
 	return mod.Dir, nil
 }
