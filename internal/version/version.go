@@ -154,6 +154,9 @@ func install(targetDir, version string) error {
 	if err := ioutil.WriteFile(filepath.Join(targetDir, unpackedOkay), nil, 0644); err != nil {
 		return err
 	}
+	if err := os.Remove(archiveFile); err != nil {
+		return fmt.Errorf("deleting archive %v: %v", archiveFile, err)
+	}
 	log.Printf("Success. You may now run '%v'", version)
 	return nil
 }

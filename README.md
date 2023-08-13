@@ -19,6 +19,8 @@ The upstream repository is available at:
 - Exit statuses from `go` commands that the wrapper programs run are now used
   as the wrapper programs' exit statuses. (The upstream version only used exit
   statuses 0 and 1.)
+- The wrapper programs now delete the downloaded archive files after they are
+  successfully unpacked.
 
 ## Usage
 
