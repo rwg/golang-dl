@@ -13,7 +13,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -70,7 +69,9 @@ func runGo(root string) {
 	handleSignals()
 
 	if err := cmd.Run(); err != nil {
-		// TODO: return the same exit status maybe.
+		if xerr, ok := err.(*exec.ExitError); ok {
+			os.Exit(xerr.ExitCode())
+		}
 		os.Exit(1)
 	}
 	os.Exit(0)
@@ -149,8 +150,11 @@ func install(targetDir, version string) error {
 	if err := unpackArchive(targetDir, archiveFile); err != nil {
 		return fmt.Errorf("extracting archive %v: %v", archiveFile, err)
 	}
-	if err := ioutil.WriteFile(filepath.Join(targetDir, unpackedOkay), nil, 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(targetDir, unpackedOkay), nil, 0644); err != nil {
 		return err
+	}
+	if err := os.Remove(archiveFile); err != nil {
+		return fmt.Errorf("deleting archive %v: %v", archiveFile, err)
 	}
 	log.Printf("Success. You may now run '%v'", version)
 	return nil
@@ -320,7 +324,7 @@ func slurpURLToString(url_ string) (string, error) {
 	if res.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("%s: %v", url_, res.Status)
 	}
-	slurp, err := ioutil.ReadAll(res.Body)
+	slurp, err := io.ReadAll(res.Body)
 	if err != nil {
 		return "", fmt.Errorf("reading %s: %v", url_, err)
 	}
@@ -446,11 +450,16 @@ func exe() string {
 }
 
 func goroot(version string) (string, error) {
+	override := os.Getenv("GOLANG_DL_SDK_ROOT")
+	if override != "" {
+		return filepath.Join(override, version), nil
+	}
+
 	home, err := homedir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get home directory: %v", err)
 	}
-	return filepath.Join(home, "sdk", version), nil
+	return filepath.Join(home, "go", "sdk", version), nil
 }
 
 func homedir() (string, error) {

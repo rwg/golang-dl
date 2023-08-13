@@ -6,18 +6,18 @@
 //
 // To install, run:
 //
-//     $ go install golang.org/dl/go1.14.13@latest
+//     $ go install github.com/rwg/golang-dl/go1.14.13@latest
 //     $ go1.14.13 download
 //
 // And then use the go1.14.13 command as if it were your normal go
 // command.
 //
-// See the release notes at https://golang.org/doc/devel/release.html#go1.14.minor
+// See the release notes at https://go.dev/doc/devel/release#go1.14.minor
 //
-// File bugs at https://golang.org/issues/new
+// File bugs at https://go.dev/issue/new
 package main
 
-import "golang.org/dl/internal/version"
+import "github.com/rwg/golang-dl/internal/version"
 
 func main() {
 	version.Run("go1.14.13")

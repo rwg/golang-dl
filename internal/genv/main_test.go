@@ -2,9 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-//go:build go1.13
-// +build go1.13
-
 package main
 
 import "testing"
@@ -14,7 +11,7 @@ func TestVersionNoPatch(t *testing.T) {
 		in  string
 		out string
 	}{
-		{"go1.11.4", "devel/release.html#go1.11.minor"},
+		{"go1.11.4", "devel/release#go1.11.minor"},
 		{"go1.12", "go1.12"},
 		{"go1.12beta1", "go1.12"},
 		{"go1.12rc2", "go1.12"},

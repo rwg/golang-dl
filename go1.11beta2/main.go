@@ -6,7 +6,7 @@
 //
 // To install, run:
 //
-//     $ go install golang.org/dl/go1.11beta2@latest
+//     $ go install github.com/rwg/golang-dl/go1.11beta2@latest
 //     $ go1.11beta2 download
 //
 // And then use the go1.11beta2 command as if it were your normal go
@@ -14,10 +14,10 @@
 //
 // See the release notes at https://tip.golang.org/doc/go1.11
 //
-// File bugs at https://golang.org/issues/new
+// File bugs at https://go.dev/issue/new
 package main
 
-import "golang.org/dl/internal/version"
+import "github.com/rwg/golang-dl/internal/version"
 
 func main() {
 	version.Run("go1.11beta2")
