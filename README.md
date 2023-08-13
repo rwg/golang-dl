@@ -12,10 +12,11 @@ The upstream repository is available at:
 
 ## Changes from upstream
 
+- The default installation path for downloaded Go toolchains is now `~/go/sdk`.
 - The wrapper programs now support a `GOLANG_DL_SDK_ROOT` environment variable,
-  which overrides the hard-coded `~/sdk` path where Go toolchains are installed
-  by default. (Note that this is not a Go environment variable, so `go env`
-  cannot be used to change it.)
+  which overrides the hard-coded `~/go/sdk` path where Go toolchains are
+  installed by default. (Note that this is not a Go environment variable, so
+  `go env` cannot be used to change it.)
 - Exit statuses from `go` commands that the wrapper programs run are now used
   as the wrapper programs' exit statuses. (The upstream version only used exit
   statuses 0 and 1.)
@@ -41,11 +42,11 @@ toolchain:
 go1.21.0 download
 ```
 
-By default, the toolchain will be installed in `~/sdk`. To specify a different
-path, you can set the `GOLANG_DL_SDK_ROOT` environment variable:
+By default, the toolchain will be installed in `~/go/sdk`. To specify a
+different path, you can set the `GOLANG_DL_SDK_ROOT` environment variable:
 
 ```sh
-GOLANG_DL_SDK_ROOT=/home/username/go/toolchains go1.21.0 download
+GOLANG_DL_SDK_ROOT=/home/username/go-versions go1.21.0 download
 ```
 
 > [!IMPORTANT]
