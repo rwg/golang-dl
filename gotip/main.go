@@ -6,8 +6,8 @@
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/gotip@latest
-//     $ gotip download
+//	$ go install github.com/rwg/golang-dl/gotip@latest
+//	$ gotip download
 //
 // And then use the gotip command as if it were your normal go command.
 //

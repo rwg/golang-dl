@@ -6,8 +6,8 @@
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/go1.19.10@latest
-//     $ go1.19.10 download
+//	$ go install github.com/rwg/golang-dl/go1.19.10@latest
+//	$ go1.19.10 download
 //
 // And then use the go1.19.10 command as if it were your normal go
 // command.
