@@ -99,8 +99,8 @@ var mainTmpl = template.Must(template.New("main").Parse(`// Copyright {{.Year}} 
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/{{.Version}}@latest
-//     $ {{.Version}} download
+//	$ go install github.com/rwg/golang-dl/{{.Version}}@latest
+//	$ {{.Version}} download
 //
 // And then use the {{.Version}} command as if it were your normal go
 // command.
