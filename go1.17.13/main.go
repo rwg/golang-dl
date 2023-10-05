@@ -6,8 +6,8 @@
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/go1.17.13@latest
-//     $ go1.17.13 download
+//	$ go install github.com/rwg/golang-dl/go1.17.13@latest
+//	$ go1.17.13 download
 //
 // And then use the go1.17.13 command as if it were your normal go
 // command.

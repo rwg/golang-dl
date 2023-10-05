@@ -6,8 +6,8 @@
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/go1.21.0@latest
-//     $ go1.21.0 download
+//	$ go install github.com/rwg/golang-dl/go1.21.0@latest
+//	$ go1.21.0 download
 //
 // And then use the go1.21.0 command as if it were your normal go
 // command.

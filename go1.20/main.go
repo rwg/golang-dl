@@ -6,8 +6,8 @@
 //
 // To install, run:
 //
-//     $ go install github.com/rwg/golang-dl/go1.20@latest
-//     $ go1.20 download
+//	$ go install github.com/rwg/golang-dl/go1.20@latest
+//	$ go1.20 download
 //
 // And then use the go1.20 command as if it were your normal go
 // command.
