@@ -83,7 +83,7 @@ func versionNoPatch(ver string) string {
 	return m[1]
 }
 
-func failf(format string, args ...interface{}) {
+func failf(format string, args ...any) {
 	if len(format) == 0 || format[len(format)-1] != '\n' {
 		format += "\n"
 	}
